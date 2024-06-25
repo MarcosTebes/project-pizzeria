@@ -70,7 +70,7 @@ nav ul li a:hover {
   display: flex; /*  Para que las columnas tengan la misma altura. */
   box-sizing: border-box;
   list-style: none;
-  width: calc(100% / 3); /* 33.33% */
+  width: calc(33.33% - 20px); /* 33.33% */
   padding: 10px;
 }
 
