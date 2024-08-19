@@ -12,7 +12,7 @@
 <body>
     <div class="d-flex align-items-center justify-content-center vh-100">
 
-        <form class="form-signin" action="" method="POST" accept-charset="utf-8">
+        <form class="form-signin" action="login.php" method="POST" accept-charset="utf-8">
             <div class="d-flex align-items-center justify-content-center">
                 <img src="img/users.svg" alt="">
             </div>
@@ -21,7 +21,9 @@
                 class="form-control login-input" autofocus> <br />
             <input type="password" class="form-control login-input" id="password" name="password"
                 placeholder="Contraseña" required> <br />
-
+            <br />
+            <div id="errorMessages"></div>
+            <br />
             <div class="text-center">
                 <button class="btn btn-danger btn-lg btn-block" id="login" type="submit">
                     Login
@@ -32,7 +34,7 @@
         </form>
 
     </div>
-<script src="js/login.js"></script>
+    <script src="js/login.js"></script>
 </body>
 
 </html>
