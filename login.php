@@ -46,8 +46,8 @@
                 session_start();
                 //echo "Login Correcto";
                 date_default_timezone_set('America/Argentina/Buenos_Aires');
-                $_SESSION["time"]=date('H:i:s');
-                $_SESSION["username"]=$usr;
+                $_SESSION["time"] = date('H:i:s');
+                $_SESSION["username"] = $usr;
                 $_SESSION['logueado'] = true;
                 header("location:welcome.php");
             }
