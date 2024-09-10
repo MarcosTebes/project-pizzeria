@@ -49,32 +49,45 @@
             <ul class="gallery">
                 <?php
                 include_once("config_products.php");
+                include_once("db.class.php");
+                new Db();
+                $link=new Db();
+                $link->run($sql, NULL);
+                $stmt=$link->run($sql, NULL);
+                $data = $stmt->fetchAll();
+                foreach ($data as $row) 
                 try {
                     // Conexion a la Base de Datos
                     $conn = new PDO("mysql:host=" . SERVER_NAME . ";dbname=" . DATABASE_NAME, USER_NAME, PASSWORD);
-                    echo "Conexion Exitosa";
+                    //echo "Conexion Exitosa";
                     $sql = "select c.category_name,p.image,p.product_name,p.price, date_format(p.start_date,'%d/%m/%Y') as date from products p inner join categories c on p.id_category=c.id_category order by p.price";
+                    $stmt = $conn->prepare($sql);
                     $stmt->execute();
+                    $data = $stmt->fetchAll();
                 } catch (PDOException $e) {
                     echo "¡Error!: ";
                     die();
                 }
+                foreach ($data as $row) {
                 ?>
-                <li>
-                    <div class="box">
-                        <figure>
-                            <img src="<?php ?>" alt="fugazzeta" class="img-jpg">
-                            <figcaption>
-                                <h3><?php  ?></h3>
-                                <p><?php ?></p>
-                                <time><?php ?></time>
-                            </figcaption>
-                        </figure>
-                        <button class="button" value="1">
-                            Añadir al carrito <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
-                    </div>
-                </li>
+                    <li>
+                        <div class="box">
+                            <figure>
+                                <img src="<?php echo $row['image'] ?>" alt="fugazzeta" class="img-jpg">
+                                <figcaption>
+                                    <h3><?php echo $row['category_name'] . '' . $row['product_name'] ?></h3>
+                                    <p><?php echo '$' . ' ' . $row['price'] ?></p>
+                                    <time><?php echo $row['date'] ?></time>
+                                </figcaption>
+                            </figure>
+                            <button class="button" value="1">
+                                Añadir al carrito <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                    </li>
+                <?php
+                }
+                ?>
             </ul>
         </div>
         <footer>
