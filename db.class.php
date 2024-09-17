@@ -1,4 +1,5 @@
 <?PHP
+
 /**
  * Db Clase para trabajar con Bases de Datos usando PDO
  * 
@@ -11,8 +12,8 @@
  */
 class Db
 {
-   public $connection;
-   public function __construct()
+    public $connection;
+    public function __construct()
     {
         try {
             $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"];
@@ -24,14 +25,17 @@ class Db
         return $this->connection;
     }
     public function run($query, $args = NULL)
-     {
-       $stmt = $this->connection->prepare($query);
-       $stmt->execute($args);
-       return $stmt;
-     } 
+    {
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($args);
+        return $stmt;
+    }
     public function close()
     {
         $this->connection = null;
     }
+    public function prepare($query)
+    {
+        return $this->connection->prepare($query);
+    }
 }
-?>
